@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>QuoteSlaughter</title>
+<script type="text/javascript">
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  else 
+  { document.getElementById("myDiv").innerHTML = '<p style="text-align:center;"><img src="{{ url_for('static', filename='loader.gif') }}" /></p>'; 
+    }
+  }
+xmlhttp.open("POST","/",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<p style="text-align:center;"> 
+<input type="submit" name="foo" value="Cough it up!" onclick="loadXMLDoc()" />
+<br />
+<!--textarea rows="15" cols="90" name="bar">{{ original }}</textarea>
+<br />
+<textarea rows="15" cols="90" name="baz">{{ markovised }}</textarea>
+<br /--!>
+<div id="myDiv"><p style="text-align:center;"><i>Pointless webapp that scrapes movie quotes from the web, parses them, generates its own text from a random quote using markov chains, and displays the original and the generated text.</i></p></div>
+</p>
+<hr />
+<p style="text-align:center;">
+<a href="http://www.onloop.net/">Blog</a> | <a href="mailto:prp.1111@gmail.com">Mail</a>
+<br />
+<code>With <a href="http://flask.pocoo.org">Flask</a>, AJAX, Urllib2 and <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>. Quotes from <a href="http://www.moviequotedb.com">Moviequotedb</a></code>
+</body>
+</html>
