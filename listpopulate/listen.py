@@ -9,8 +9,6 @@ content=open('list.txt')
 for line in content.readlines():
 	readstring=readstring+line
 
-#print readstring
-
 soupped=BeautifulSoup(readstring)
 
 extext=soupped.findAll('a',href=re.compile('http'))

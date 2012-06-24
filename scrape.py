@@ -26,7 +26,6 @@ def returnmarkovised():
 		except urllib2.URLError:
 			continue
 		break
-	#print "scraped!"
 	soup = BeautifulSoup(contents);
 
 	soup1 = soup.findAll(id=re.compile('quote'))
@@ -36,7 +35,6 @@ def returnmarkovised():
 	    data = text.strip()
 	    final.append(data)
 
-	#print random.choice(final)
 	file = open('wordlist.html', 'w')
 
 	linecount={}
@@ -45,22 +43,12 @@ def returnmarkovised():
 
 	for item in final:
 	    count=item.count('\n')
-	    #item=item.replace('\n','<br />')
 	    linecount.setdefault(item, count)
 	    values.append(count)
 
-	#print linecount
-
 	for j in range(1,6):
-		#print max(i for i in values)
 		maximum=[k for k, v in linecount.iteritems() if v == max(i for i in values)][0]
 		lengthiest.append(maximum)
-		#print max
-		#values.remove(max(i for i in values))
-		#del linecount[maximum]
-		#print linecount
-		#file.write("%s\n\n" % maximum.encode('utf-8'))
-	#print len(lengthiest)
 	originaltext=random.choice(lengthiest)
 	file.write("%s\n" % originaltext.encode('utf-8'))
 	file.close()
